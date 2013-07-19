@@ -50,10 +50,13 @@ class createStatCronJob  extends CronJob {
                 $stat_temp->delete();
                 $stat_temp->store();
 
-
             }
         } catch(Exception $ex) {
             $this->test = $ex;
         }
+
+
     }
+
+
 }
