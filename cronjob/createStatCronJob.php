@@ -8,6 +8,7 @@
  */
 require_once dirname(__FILE__).'/../modells/neostat_temp.php';
 require_once dirname(__FILE__).'/../modells/neostat.php';
+require_once dirname(__FILE__).'/../modells/seminare.php';
 
 class createStatCronJob  extends CronJob {
     public static function getName() {
@@ -25,7 +26,8 @@ class createStatCronJob  extends CronJob {
                 $stat_temp = new neostat_temp($id);
                 $pageid = $stat_temp->id;
                 $pageid = unserialize($pageid);
-                $pageid = $pageid["auswahl"];
+                if(isset($pageid["cid"])) $pageid = $pageid["cid"];
+                else $pageid = $pageid["auswahl"];
                 $tag = mktime(0,0,1, date("m",$stat_temp->mkdate),date("d",$stat_temp->mkdate),date("Y",$stat_temp->mkdate));
                 if(empty($pageid)) $stat = neostats::findBySql("url = ? AND day = ?", array($stat_temp->url, $tag));
                 else $stat = neostats::findBySql("url = ? AND id = ? AND day = ?", array($stat_temp->url, $pageid, $tag));
@@ -63,7 +65,10 @@ class createStatCronJob  extends CronJob {
     private function getSiteName($name, $id) {
         switch($name) {
             case 'sem_portal.php': return ""; break;
-
+            case '/teilnehmer.php': $sem = new seminare($id);
+                return 'Teilnehmerseite von '. $sem->Name; break;
+            case '/index.php': return "Startseite"; break;
+            case '/dispatch.php': return $id; break;
             default: return "keinen Titel gefunden"; break;
         }
 

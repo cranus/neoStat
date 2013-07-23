@@ -34,7 +34,7 @@ class showStatController extends \StudipController{
 			$kw = date("W", $s['day']);
 			$return[$kw]['kw'] = $kw;
 			if(empty($s->id)) $s->id = "keine";
-			$return[$kw]['data'][] = array("url"=>$s->url,"id"=>$s->id,"titel"=>"---","zugriffe"=>$s->count);
+			$return[$kw]['data'][] = array("url"=>$s->url,"id"=>$s->id,"titel"=>$s->seitenname,"zugriffe"=>$s->count);
 			$return[$kw]['zugriffe'] += $s->count;
 		}
 		return $return;
