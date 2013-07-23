@@ -35,6 +35,7 @@ class createStatCronJob  extends CronJob {
                     $stats->id = $pageid;
                     $stats->count = 1;
                     $stats->day = $tag;
+                    $stats->seitenname = $this->getSiteName($stat_temp->url,$pageid);
                     $stats->store();
                     $this->imgdata[$stats->statid]['url'] = $stats->url;
                     $this->imgdata[$stats->statid]['count'] = $stats->count;
@@ -56,7 +57,19 @@ class createStatCronJob  extends CronJob {
         }
 
 
+
     }
+
+    private function getSiteName($name, $id) {
+        switch($name) {
+            case 'sem_portal.php': return ""; break;
+
+            default: return "keinen Titel gefunden"; break;
+        }
+
+    }
+
+
 
 
 }

@@ -4,4 +4,5 @@ origin=neo
 version=0.0.2
 description=Erstellt Statistiken über das Nutzerverhalten
 studipMinVersion=2.4
-install=
+dbscheme=db/install.sql
+uninstalldbscheme=db/uninstall.sql
