@@ -25,9 +25,12 @@ class createStatCronJob  extends CronJob {
             while($id = neostat_temp::getFirst() AND $i < 100) {
                 $stat_temp = new neostat_temp($id);
                 $pageid = $stat_temp->id;
-                $pageid = unserialize($pageid);
-                if(isset($pageid["cid"])) $pageid = $pageid["cid"];
-                else $pageid = $pageid["auswahl"];
+                If($stat_temp->url != '/dispatch.php') {
+                    $pageid = unserialize($pageid);
+                    if(isset($pageid["cid"])) $pageid = $pageid["cid"];
+                    else $pageid = $pageid["auswahl"];
+                }
+
                 $tag = mktime(0,0,1, date("m",$stat_temp->mkdate),date("d",$stat_temp->mkdate),date("Y",$stat_temp->mkdate));
                 if(empty($pageid)) $stat = neostats::findBySql("url = ? AND day = ?", array($stat_temp->url, $tag));
                 else $stat = neostats::findBySql("url = ? AND id = ? AND day = ?", array($stat_temp->url, $pageid, $tag));

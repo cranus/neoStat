@@ -7,4 +7,6 @@ Das PlugIn Versucht jedem Benutzer eine Temporaere ID zugeben, die in keiner and
 
 To Do's
 ========
-- Auswertung erweitern um den Titel der Seite auszulesen
+- Weitere Titel bei der Auswertung hinzufügen
+- Anzeige verschönern
+- Auswertung für einzelne Seiten anzeigen

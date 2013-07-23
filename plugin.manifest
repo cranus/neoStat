@@ -1,7 +1,7 @@
 pluginname=NEO Statistik
 pluginclassname=neostat
 origin=neo
-version=0.0.2
+version=0.5
 description=Erstellt Statistiken über das Nutzerverhalten
 studipMinVersion=2.4
 dbscheme=db/install.sql

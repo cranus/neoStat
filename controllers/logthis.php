@@ -42,11 +42,14 @@ class logthis extends \StudipController{
 
     function getId() {
         if($_SERVER['PHP_SELF'] == '/dispatch.php') {
-            $id = $_SERVER['PATH_INFO'];
+            if(strpos($_SERVER['PATH_INFO'], 'delete')) $id = 'Es wurde etwas geloescht'; //Es sollte nicht alle wissen was gemacht wurde
+            else $id = $_SERVER['PATH_INFO'];
 
         } else $id = serialize($_GET);
         return $id;
     }
+
+
 
 
 }
