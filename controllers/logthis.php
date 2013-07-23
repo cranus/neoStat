@@ -23,14 +23,14 @@ class logthis extends \StudipController{
 	function log(){
 		$log = new neostat_temp();
 		$log->statid = $_SESSION["statid"];
-		$log->url = $_SERVER['PHP_SELF'];
+		$log->url = $this->getPage();
 		$log->id = $this->getId();
 		$log->store();
 
 	}
 
 	function checklastlog() {
-		$logs = neostat_temp::findbySQL("statid = '".$_SESSION["statid"]."' AND url = '".$_SERVER['PHP_SELF']."' AND id ='".$this->getId()."'");
+		$logs = neostat_temp::findbySQL("statid = '".$_SESSION["statid"]."' AND url = '".$this->getPage()."' AND id ='".$this->getId()."'");
 		$time = mktime(date("H"),date("i")+5,date("s"),date("m"),date("d"),date("Y"));
 		$newlog = true;
 		foreach($logs as $l) {
@@ -47,6 +47,15 @@ class logthis extends \StudipController{
 
         } else $id = serialize($_GET);
         return $id;
+    }
+
+    function getPage() {
+        switch($_SERVER['PHP_SELF']) {
+            case '/plugins.php':
+                return substr($_SERVER['PATH_INFO'],0,strpos($_SERVER['PATH_INFO'], '/',2));
+
+            default: return $_SERVER['PHP_SELF'];
+        }
     }
 
 

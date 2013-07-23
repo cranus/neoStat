@@ -7,14 +7,14 @@
 		<div style="float: left; width: 20%;">ID</div>
 		<div style="float: left; width: 20%;">Titel der Seite</div>
 		<div style="float: left; width: 20%;">Anzahl der Zugriffe</div>
-		<div style="float: left; width: 20%;">1111</div>
+		<div style="float: left; width: 20%;">Zugriffe auf diese Seite</div>
 
 	<? FOREACH($kw['data'] as $data ) : ?>
 		<div style="float: left; width: 20%;"><?= $data["url"] ?></div>
 		<div style="float: left; width: 20%;"><?= $data["id"] ?></div>
 		<div style="float: left; width: 20%;"><?= $data["titel"] ?></div>
 		<div style="float: left; width: 20%;"><?= $data["zugriffe"] ?></div>
-		<div style="float: left; width: 20%;">1111</div>
+		<div style="float: left; width: 20%;">Anzeigen</div>
 	<? ENDFOREACH ?>
 	</div>
 <div style="width: 100%"></div>

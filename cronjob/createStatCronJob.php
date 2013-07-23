@@ -72,6 +72,8 @@ class createStatCronJob  extends CronJob {
                 return 'Teilnehmerseite von '. $sem->Name; break;
             case '/index.php': return "Startseite"; break;
             case '/dispatch.php': return $id; break;
+            case '/coreforum': $sem = new seminare($id);
+                return 'Forum von '. $sem->Name; break;
             default: return "keinen Titel gefunden"; break;
         }
 
